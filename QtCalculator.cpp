@@ -23,6 +23,7 @@ QtCalculator::QtCalculator(QWidget *parent)
     connect(ui.pushButton_8, &QPushButton::clicked, this, &QtCalculator::pushButton_8);
     connect(ui.pushButton_9, &QPushButton::clicked, this, &QtCalculator::pushButton_9);
     connect(ui.eraseButton, &QPushButton::clicked, this, &QtCalculator::eraseButton);
+    connect(ui.resultButton, &QPushButton::clicked, this, &QtCalculator::resultButton);
 }
 
 QtCalculator::~QtCalculator(){}
@@ -45,7 +46,7 @@ void QtCalculator::multiplyButton()
 
 void QtCalculator::deductButton()
 {
-    insertOperationSymbol("-");
+    ui.lineEdit->insert("-");
 }
 
 void QtCalculator::addButton()
@@ -141,9 +142,6 @@ bool QtCalculator::checkIfOperationErased(QString op)
     else if (op == "*") {
         return true;
     }
-    else if (op == "-") {
-        return true;
-    }
     else if (op == "+") {
         return true;
     }
@@ -164,4 +162,10 @@ void QtCalculator::insertOperationSymbol(const char* op) {
     {
         QMessageBox::warning(this, "OperationWarning", ("The operation symbol already exist!"));   
     }
+}
+
+void QtCalculator::resultButton()
+{
+    QString dataFromEdit = ui.lineEdit->text();
+
 }

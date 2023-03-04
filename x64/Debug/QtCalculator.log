@@ -1,5 +1,4 @@
-﻿  moc QtCalculator.h
-  QtCalculator.cpp
+﻿  QtCalculator.cpp
   main.cpp
   moc_QtCalculator.cpp
   QtCalculator.vcxproj -> D:\Програмування\QtLearning\QtCalculator\x64\Debug\QtCalculator.exe
