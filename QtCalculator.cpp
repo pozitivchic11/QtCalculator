@@ -169,5 +169,13 @@ void QtCalculator::insertOperationSymbol(const char* op) {
 
 void QtCalculator::resultButton()
 {
-    ui.addButton->setText(QString::number(ui.lineEdit->text().size()));
+    FindSolution fs(ui.lineEdit->text());
+
+    fs.fillDataArray();
+
+    fs.fillValuesArrays();
+
+    fs.concatenateArrays();
+
+    ui.addButton->setText(fs.getFirstValue());
 }

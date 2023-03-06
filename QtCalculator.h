@@ -1,8 +1,10 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "ui_QtCalculator.h"
 #include <qmessagebox.h>
+
+#include "ui_QtCalculator.h"
+#include "find_solution.h"
 
 class QtCalculator : public QMainWindow
 {
