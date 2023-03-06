@@ -3,7 +3,6 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_QtCalculator.h"
 #include <qmessagebox.h>
-#include <vector>
 
 class QtCalculator : public QMainWindow
 {
@@ -40,9 +39,7 @@ private slots:
 
 private:
     bool checkIfOperationExist = false;
-    QString dataFromEdit;
 
 private:
     Ui::QtCalculatorClass ui;
 };
-

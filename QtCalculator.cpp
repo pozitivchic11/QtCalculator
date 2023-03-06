@@ -46,7 +46,7 @@ void QtCalculator::multiplyButton()
 
 void QtCalculator::deductButton()
 {
-    ui.lineEdit->insert("-");
+    insertOperationSymbol("-");
 }
 
 void QtCalculator::addButton()
@@ -142,6 +142,9 @@ bool QtCalculator::checkIfOperationErased(QString op)
     else if (op == "*") {
         return true;
     }
+    else if (op == "-") {
+        return true;
+    }
     else if (op == "+") {
         return true;
     }
@@ -166,6 +169,5 @@ void QtCalculator::insertOperationSymbol(const char* op) {
 
 void QtCalculator::resultButton()
 {
-    QString dataFromEdit = ui.lineEdit->text();
-
+    ui.addButton->setText(QString::number(ui.lineEdit->text().size()));
 }
