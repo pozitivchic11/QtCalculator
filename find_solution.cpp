@@ -1,54 +1,110 @@
 #include "find_solution.h"
 
-FindSolution::FindSolution(QString data_from_edit) : data_from_edit(data_from_edit)
+FindSolution::FindSolution(){}
+
+FindSolution::~FindSolution(){}
+
+void FindSolution::setTextFromEdit(QString textFromEdit)
 {
-	this->size = data_from_edit.size();
+	this->textFromEdit = textFromEdit;
 }
 
-void FindSolution::fillDataArray()
-{
-	for(int i = 0; i < data_from_edit.size(); i++)
-	{
-		dataVector.push_back(data_from_edit[i]);
-	}
-}
+QString FindSolution::getTextFromEdit() { return textFromEdit; }
 
-void FindSolution::fillValuesArrays()
+int FindSolution::getFirstValue() { return firstValue; }
+
+int FindSolution::getSecondValue() { return secondValue; }
+
+void FindSolution::fillVectors()
 {
-	bool dual_vector = false;
 	int i = 0;
 
-	while (i < dataVector.size())
-	{
-		if (QtCalculator::checkIfOperationErased(dataVector[i])) {
-			i++;
-			break;
+	for (i; i < textFromEdit.size(); i++) {
+		if (textFromEdit[i] == '0') {
+			firstVector.push_back(0);
 		}
-		else { firstVector.push_back(dataVector[i]); i++; }
+		else if (textFromEdit[i] == '1') {
+			firstVector.push_back(1);
+		}
+		else if (textFromEdit[i] == '2') {
+			firstVector.push_back(2);
+		}
+		else if (textFromEdit[i] == '3') {
+			firstVector.push_back(3);
+		}
+		else if (textFromEdit[i] == '4') {
+			firstVector.push_back(4);
+		}
+		else if (textFromEdit[i] == '5') {
+			firstVector.push_back(5);
+		}
+		else if (textFromEdit[i] == '6') {
+			firstVector.push_back(6);
+		}
+		else if (textFromEdit[i] == '7') {
+			firstVector.push_back(7);
+		}
+		else if (textFromEdit[i] == '8') {
+			firstVector.push_back(8);
+		}
+		else if (textFromEdit[i] == '9') {
+			firstVector.push_back(9);
+		}
+		else { break; }
 	}
 
-	while (i < dataVector.size())
+	i++;
+
+	for (i; i < textFromEdit.size(); i++) {
+		if (textFromEdit[i] == '0') {
+			secondVector.push_back(0);
+		}
+		else if (textFromEdit[i] == '1') {
+			secondVector.push_back(1);
+		}
+		else if (textFromEdit[i] == '2') {
+			secondVector.push_back(2);
+		}
+		else if (textFromEdit[i] == '3') {
+			secondVector.push_back(3);
+		}
+		else if (textFromEdit[i] == '4') {
+			secondVector.push_back(4);
+		}
+		else if (textFromEdit[i] == '5') {
+			secondVector.push_back(5);
+		}
+		else if (textFromEdit[i] == '6') {
+			secondVector.push_back(6);
+		}
+		else if (textFromEdit[i] == '7') {
+			secondVector.push_back(7);
+		}
+		else if (textFromEdit[i] == '8') {
+			secondVector.push_back(8);
+		}
+		else if (textFromEdit[i] == '9') {
+			secondVector.push_back(9);
+		}
+		else { break; }
+	}
+}
+
+void FindSolution::concatenateValues()
+{
+	for (int i = 0; i < firstVector.size(); i++)
 	{
-		secondValue.push_back(dataVector[i]);
+		if (firstVector.size() - 1 == i) {
+			firstValue += firstVector[i];
+		}
+		else { firstValue = (firstValue + firstVector[i]) * 10; }
+	}
 
-		i++;
+	for (int i = 0; i < secondVector.size(); i++)
+	{
+		if (secondVector.size() - 1 == i) {
+			secondValue += secondVector[i];
+		}
+		else { secondValue = (secondValue + secondVector[i]) * 10; }
 	}
 }
-
-void FindSolution::concatenateArrays() {
-	for (int i = 0; i < firstVector.size(); i++) {
-		firstValue += firstVector[i];
-	}
-
-	for (int i = 0; i < secondVector.size(); i++) {
-		secondValue += secondVector[i];
-	}
-}
-
-QString FindSolution::getFirstValue() { return firstValue; }
-
-QString FindSolution::getSecondValue(){ return secondValue; }
-
-int FindSolution::getFirstValue_int() { return firstValue_int; };
-
-int FindSolution::getSecondValue_int() { return secondValue_int; };

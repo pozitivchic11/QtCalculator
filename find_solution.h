@@ -9,33 +9,27 @@
 class FindSolution
 {
 public:
-	FindSolution(QString data_from_edit);
+	FindSolution();
+	~FindSolution();
 
-	void fillDataArray();
+	int getFirstValue();
+	int getSecondValue();
 
-	void fillValuesArrays();
+	void setTextFromEdit(const QString textFromEdit);
+	QString getTextFromEdit();
 
-	void concatenateArrays();
+	void concatenateValues();
 
-	QString getFirstValue();
-
-	QString getSecondValue();
-
-	int getFirstValue_int();
-
-	int getSecondValue_int();
+	void fillVectors();
 
 private:
-	std::vector<QString> dataVector;
-	std::vector<QString> firstVector;
-	std::vector<QString> secondVector;
+	std::vector<int> firstVector;
+	std::vector<int> secondVector;
 
-	QString data_from_edit;
-	QString firstValue;
-	QString secondValue;
+	QString textFromEdit;
 
-	const int firstValue_int = firstValue.toInt();
-	const int secondValue_int = secondValue.toInt();
+	int firstValue = 0;
+	int secondValue = 0;
 
-	int size;
+	bool checkIfOperationAdded = false;
 };

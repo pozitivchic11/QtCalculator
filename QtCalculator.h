@@ -42,6 +42,6 @@ private slots:
 private:
     bool checkIfOperationExist = false;
 
-private:
+public:
     Ui::QtCalculatorClass ui;
 };

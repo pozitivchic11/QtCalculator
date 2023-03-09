@@ -28,7 +28,6 @@ QtCalculator::QtCalculator(QWidget *parent)
 
 QtCalculator::~QtCalculator(){}
 
-
 void QtCalculator::modButton()
 {
     insertOperationSymbol("%");
@@ -128,7 +127,6 @@ void QtCalculator::clearButton()
         ui.lineEdit->clear();
     }
     else { ui.lineEdit->clear(); checkIfOperationExist = false; }
-    
 }
 
 bool QtCalculator::checkIfOperationErased(QString op)
@@ -169,13 +167,14 @@ void QtCalculator::insertOperationSymbol(const char* op) {
 
 void QtCalculator::resultButton()
 {
-    FindSolution fs(ui.lineEdit->text());
+    FindSolution fs;
 
-    fs.fillDataArray();
+    fs.setTextFromEdit(ui.lineEdit->text());
 
-    fs.fillValuesArrays();
+    fs.fillVectors();
 
-    fs.concatenateArrays();
+    fs.concatenateValues();
 
-    ui.addButton->setText(fs.getSecondValue());
+    ui.deductButton->setText(QString::number(fs.getFirstValue()));
+    ui.addButton->setText(QString::number(fs.getSecondValue()));
 }
