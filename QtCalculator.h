@@ -15,7 +15,7 @@ public:
     ~QtCalculator();
 
     void insertOperationSymbol(const char* op);
-    bool checkIfOperationErased(QString op);
+    static bool checkIfOperationErased(QString op);
 
 private slots:
     void modButton();

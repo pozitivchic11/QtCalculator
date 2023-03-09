@@ -177,5 +177,5 @@ void QtCalculator::resultButton()
 
     fs.concatenateArrays();
 
-    ui.addButton->setText(fs.getFirstValue());
+    ui.addButton->setText(fs.getSecondValue());
 }

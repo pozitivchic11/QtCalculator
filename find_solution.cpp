@@ -16,15 +16,22 @@ void FindSolution::fillDataArray()
 void FindSolution::fillValuesArrays()
 {
 	bool dual_vector = false;
+	int i = 0;
 
-	for (int i = 0; i < dataVector.size(); i++) {
-		if ((!dual_vector) and (dataVector[i] != "%") or (dataVector[i] != "/") or (dataVector[i] != "*") or (dataVector[i] != "-") or (dataVector[i] != "+")) {
-			firstVector.push_back(dataVector[i]);
+	while (i < dataVector.size())
+	{
+		if (QtCalculator::checkIfOperationErased(dataVector[i])) {
+			i++;
+			break;
 		}
-		else if((dataVector[i] != "%") or (dataVector[i] != "/") or (dataVector[i] != "*") or (dataVector[i] != "-") or (dataVector[i] != "+")) {
-			dual_vector = true;
-		}
-		else if (dual_vector) { secondVector.push_back(dataVector[i]); }
+		else { firstVector.push_back(dataVector[i]); i++; }
+	}
+
+	while (i < dataVector.size())
+	{
+		secondValue.push_back(dataVector[i]);
+
+		i++;
 	}
 }
 
@@ -41,3 +48,7 @@ void FindSolution::concatenateArrays() {
 QString FindSolution::getFirstValue() { return firstValue; }
 
 QString FindSolution::getSecondValue(){ return secondValue; }
+
+int FindSolution::getFirstValue_int() { return firstValue_int; };
+
+int FindSolution::getSecondValue_int() { return secondValue_int; };

@@ -21,6 +21,10 @@ public:
 
 	QString getSecondValue();
 
+	int getFirstValue_int();
+
+	int getSecondValue_int();
+
 private:
 	std::vector<QString> dataVector;
 	std::vector<QString> firstVector;
@@ -29,6 +33,9 @@ private:
 	QString data_from_edit;
 	QString firstValue;
 	QString secondValue;
+
+	const int firstValue_int = firstValue.toInt();
+	const int secondValue_int = secondValue.toInt();
 
 	int size;
 };
