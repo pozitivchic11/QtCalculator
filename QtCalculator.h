@@ -24,7 +24,7 @@ private slots:
     void deductButton();
     void addButton();
     void dotButton();
-    //void minusButton();
+    void minusButton();
     void pushButton_0();
     void pushButton_1();
     void pushButton_2();

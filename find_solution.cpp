@@ -11,13 +11,19 @@ void FindSolution::setTextFromEdit(QString textFromEdit)
 
 QString FindSolution::getTextFromEdit() { return textFromEdit; }
 
-int FindSolution::getFirstValue() { return firstValue; }
+QString FindSolution::getOperator() { return op; }
 
-int FindSolution::getSecondValue() { return secondValue; }
+float FindSolution::getFirstValue() { return firstValue; }
+
+float FindSolution::getSecondValue() { return secondValue; }
 
 void FindSolution::fillVectors()
 {
 	int i = 0;
+
+	if (textFromEdit[0] == '-') {
+		i++;
+	}
 
 	for (i; i < textFromEdit.size(); i++) {
 		if (textFromEdit[i] == '0') {
@@ -54,6 +60,8 @@ void FindSolution::fillVectors()
 	}
 
 	i++;
+
+	if (textFromEdit[i] == '-') { i++; }
 
 	for (i; i < textFromEdit.size(); i++) {
 		if (textFromEdit[i] == '0') {
@@ -100,11 +108,68 @@ void FindSolution::concatenateValues()
 		else { firstValue = (firstValue + firstVector[i]) * 10; }
 	}
 
+	if (textFromEdit[0] == '-') { firstValue *= -1; }
+
 	for (int i = 0; i < secondVector.size(); i++)
 	{
 		if (secondVector.size() - 1 == i) {
 			secondValue += secondVector[i];
 		}
 		else { secondValue = (secondValue + secondVector[i]) * 10; }
+	}
+
+	if (checkMinus) { secondValue *= -1; }
+}
+
+void FindSolution::findOperator()
+{
+	int i = 0;
+
+	while (i < textFromEdit.size()) {
+		if ((i != 0) and (textFromEdit[i] == '%')) {
+			op = '%';
+			if (textFromEdit[i + 1] == '-') { checkMinus = true; }
+			break;
+		}
+		else if ((i != 0) and (textFromEdit[i] == '/')) {
+			op = '/';
+			if (textFromEdit[i + 1] == '-') { checkMinus = true; }
+			break;
+		}
+		else if ((i != 0) and (textFromEdit[i] == '*')) {
+			op = '*';
+			if (textFromEdit[i + 1] == '-') { checkMinus = true; }
+			break;
+		}
+		else if ((i != 0) and (textFromEdit[i] == '-')) {
+			op = '-';
+			if (textFromEdit[i + 1] == '-') { checkMinus = true; }
+			break;
+		}
+		else if ((i != 0) and (textFromEdit[i] == '+')) {
+			op = '+';
+			if (textFromEdit[i + 1] == '-') { checkMinus = true; }
+			break;
+		}
+		i++;
+	}
+}
+
+float FindSolution::calculateAnswer()
+{
+	if (op == '%') {
+		return ((int)firstValue % (int)secondValue);
+	}
+	else if (op == '*') {
+		return (firstValue * secondValue);
+	}
+	else if (op == '/') {
+		return (firstValue / secondValue);
+	}
+	else if (op == '+') {
+		return (firstValue + secondValue);
+	}
+	else if (op == '-') {
+		return (firstValue - secondValue);
 	}
 }

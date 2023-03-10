@@ -12,24 +12,30 @@ public:
 	FindSolution();
 	~FindSolution();
 
-	int getFirstValue();
-	int getSecondValue();
+	float getFirstValue();
+	float getSecondValue();
+
+	float calculateAnswer();
+
+	QString getTextFromEdit();
+	QString getOperator();
 
 	void setTextFromEdit(const QString textFromEdit);
-	QString getTextFromEdit();
-
 	void concatenateValues();
-
+	void findOperator();
 	void fillVectors();
 
 private:
-	std::vector<int> firstVector;
-	std::vector<int> secondVector;
+	std::vector<float> firstVector;
+	std::vector<float> secondVector;
 
 	QString textFromEdit;
+	QString op;
 
-	int firstValue = 0;
-	int secondValue = 0;
+	bool checkMinus = false;
+
+	float firstValue = 0;
+	float secondValue = 0;
 
 	bool checkIfOperationAdded = false;
 };

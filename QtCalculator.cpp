@@ -22,11 +22,14 @@ QtCalculator::QtCalculator(QWidget *parent)
     connect(ui.pushButton_7, &QPushButton::clicked, this, &QtCalculator::pushButton_7);
     connect(ui.pushButton_8, &QPushButton::clicked, this, &QtCalculator::pushButton_8);
     connect(ui.pushButton_9, &QPushButton::clicked, this, &QtCalculator::pushButton_9);
+    connect(ui.minusButton, &QPushButton::clicked, this, &QtCalculator::minusButton);
     connect(ui.eraseButton, &QPushButton::clicked, this, &QtCalculator::eraseButton);
     connect(ui.resultButton, &QPushButton::clicked, this, &QtCalculator::resultButton);
+
+ui.lineEdit->setDisabled(true);
 }
 
-QtCalculator::~QtCalculator(){}
+QtCalculator::~QtCalculator() {}
 
 void QtCalculator::modButton()
 {
@@ -45,7 +48,7 @@ void QtCalculator::multiplyButton()
 
 void QtCalculator::deductButton()
 {
-    insertOperationSymbol("-");
+    ui.lineEdit->insert("-");
 }
 
 void QtCalculator::addButton()
@@ -108,6 +111,36 @@ void QtCalculator::pushButton_9()
     ui.lineEdit->insert("9");
 }
 
+void QtCalculator::minusButton()
+{
+    QString text = ui.lineEdit->text();
+
+    int i = 1;
+
+    while (i < ui.lineEdit->text().size())
+    {
+        if ((i == 1) and (text[i - 1] == '-')) {
+            text.remove(0, 1);
+        }
+        else if ((i == 1) and (text[i - 1] != '-')) {
+            text.push_front('-');
+        }
+
+        ui.lineEdit->setText(text);
+
+        i++;
+    }
+
+    while (i < ui.lineEdit->text().size())
+    {
+        if ((i == 1) and (text[i - 1] == '-')) {
+            text.remove('-');
+            ui.lineEdit->setText(text);
+        }
+        i++;
+    }
+}
+
 void QtCalculator::eraseButton()
 {
     if (!(ui.lineEdit->text().isEmpty())) {
@@ -140,9 +173,6 @@ bool QtCalculator::checkIfOperationErased(QString op)
     else if (op == "*") {
         return true;
     }
-    else if (op == "-") {
-        return true;
-    }
     else if (op == "+") {
         return true;
     }
@@ -170,11 +200,9 @@ void QtCalculator::resultButton()
     FindSolution fs;
 
     fs.setTextFromEdit(ui.lineEdit->text());
-
     fs.fillVectors();
-
+    fs.findOperator();
     fs.concatenateValues();
 
-    ui.deductButton->setText(QString::number(fs.getFirstValue()));
-    ui.addButton->setText(QString::number(fs.getSecondValue()));
+    ui.lineEdit->insert("=" + QString::number(fs.calculateAnswer()));
 }
