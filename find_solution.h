@@ -26,16 +26,19 @@ public:
 	void fillVectors();
 
 private:
-	std::vector<float> firstVector;
-	std::vector<float> secondVector;
+	std::vector<char> firstVector;
+	std::vector<char> secondVector;
+
+	std::string firstValue_str;
+	std::string secondValue_str;
 
 	QString textFromEdit;
 	QString op;
 
 	bool checkMinus = false;
 
-	float firstValue = 0;
-	float secondValue = 0;
+	float firstValue;
+	float secondValue;
 
 	bool checkIfOperationAdded = false;
 };

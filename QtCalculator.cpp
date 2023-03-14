@@ -139,6 +139,14 @@ void QtCalculator::minusButton()
         }
         i++;
     }
+
+    /*while (i < ui.lineEdit->text().size())
+    {
+        if ((i != 1) and (text[i - 1] == '-')) 
+        {
+            text.remove((i - 1), 1);
+        }
+    }*/
 }
 
 void QtCalculator::eraseButton()
