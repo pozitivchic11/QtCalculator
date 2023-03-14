@@ -1,2 +1,6 @@
 ﻿  QtCalculator.cpp
+  find_solution.cpp
+  main.cpp
+D:\Програмування\QtLearning\QtCalculator\QtCalculator\find_solution.cpp(179): warning C4715: 'FindSolution::calculateAnswer': not all control paths return a value
+  moc_QtCalculator.cpp
   QtCalculator.vcxproj -> D:\Програмування\QtLearning\QtCalculator\x64\Debug\QtCalculator.exe

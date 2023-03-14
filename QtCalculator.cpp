@@ -113,44 +113,25 @@ void QtCalculator::pushButton_9()
 
 void QtCalculator::minusButton()
 {
-    QString text = ui.lineEdit->text();
+    FindSolution fs;
 
-    int i = 1;
+    fs.setTextFromEdit(ui.lineEdit->text());
+    fs.fillVectors();
+    fs.findOperator();
+    fs.concatenateValues();
 
-    while (i < ui.lineEdit->text().size())
-    {
-        if ((i == 1) and (text[i - 1] == '-')) {
-            text.remove(0, 1);
-        }
-        else if ((i == 1) and (text[i - 1] != '-')) {
-            text.push_front('-');
-        }
+    ui.lineEdit->clear();
+    ui.lineEdit->insert(QString::number(fs.getFirstValue() * -1));
+    ui.lineEdit->insert(fs.getOperator());
+    ui.lineEdit->insert(QString::number(fs.getSecondValue() * -1));
 
-        ui.lineEdit->setText(text);
-
-        i++;
-    }
-
-    while (i < ui.lineEdit->text().size())
-    {
-        if ((i == 1) and (text[i - 1] == '-')) {
-            text.remove('-');
-            ui.lineEdit->setText(text);
-        }
-        i++;
-    }
-
-    /*while (i < ui.lineEdit->text().size())
-    {
-        if ((i != 1) and (text[i - 1] == '-')) 
-        {
-            text.remove((i - 1), 1);
-        }
-    }*/
+    clearUp = false;
 }
 
 void QtCalculator::eraseButton()
 {
+    if (ui.lineEdit->text().back() == '=') { clearUp = false; }
+
     if (!(ui.lineEdit->text().isEmpty())) {
         if (checkIfOperationErased(ui.lineEdit->text().back()))
         {
@@ -168,6 +149,8 @@ void QtCalculator::clearButton()
         ui.lineEdit->clear();
     }
     else { ui.lineEdit->clear(); checkIfOperationExist = false; }
+
+    clearUp = false;
 }
 
 bool QtCalculator::checkIfOperationErased(QString op)
@@ -205,12 +188,23 @@ void QtCalculator::insertOperationSymbol(const char* op) {
 
 void QtCalculator::resultButton()
 {
-    FindSolution fs;
+    try {
+        if (!clearUp) {
+            FindSolution fs;
 
-    fs.setTextFromEdit(ui.lineEdit->text());
-    fs.fillVectors();
-    fs.findOperator();
-    fs.concatenateValues();
+            fs.setTextFromEdit(ui.lineEdit->text());
+            fs.fillVectors();
+            fs.findOperator();
+            fs.concatenateValues();
 
-    ui.lineEdit->insert("=" + QString::number(fs.calculateAnswer()));
+            ui.lineEdit->insert("=" + QString::number(fs.calculateAnswer()));
+
+            clearUp = true;
+        }
+        else { throw std::exception("Erase the result or change the signs to the opposite!"); }
+    }
+    catch(const std::exception& ex)
+    {
+        QMessageBox::warning(this, "ResultWarning", (ex.what()));
+    }
 }

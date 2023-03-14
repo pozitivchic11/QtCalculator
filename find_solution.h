@@ -37,8 +37,8 @@ private:
 
 	bool checkMinus = false;
 
-	float firstValue;
-	float secondValue;
+	float firstValue = NULL;
+	float secondValue = NULL;
 
 	bool checkIfOperationAdded = false;
 };
