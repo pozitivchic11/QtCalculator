@@ -1,0 +1,106 @@
+#editLine{
+    color: black;
+}
+
+QPushButton {
+    border-radius: 20px;
+}
+
+#pushButton_0{
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_1 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_2 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_3 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_4 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_5 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_6 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_7 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_8 {
+    background-color: lightgray;
+    color: black;
+}
+
+#pushButton_9 {
+    background-color: lightgray;
+    color: black;
+}
+
+#modButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#clearButton {
+    background-color: dimgray;
+    color: darkorange;
+}
+
+#eraseButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#divideButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#multiplyButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#deductButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#addButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#resultButton {
+    background-color: darkorange;
+}
+
+#dotButton {
+    background-color: dimgray;
+    color: white;
+}
+
+#minusButton {
+    background-color: dimgray;
+    color: white;
+}

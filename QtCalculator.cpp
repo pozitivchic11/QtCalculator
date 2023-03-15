@@ -130,16 +130,18 @@ void QtCalculator::minusButton()
 
 void QtCalculator::eraseButton()
 {
-    if (ui.lineEdit->text().back() == '=') { clearUp = false; }
+    if (!ui.lineEdit->text().isEmpty()) {
+        if (ui.lineEdit->text().back() == '=') { clearUp = false; }
 
-    if (!(ui.lineEdit->text().isEmpty())) {
-        if (checkIfOperationErased(ui.lineEdit->text().back()))
-        {
-            ui.lineEdit->backspace();
+        if (!(ui.lineEdit->text().isEmpty())) {
+            if (checkIfOperationErased(ui.lineEdit->text().back()))
+            {
+                ui.lineEdit->backspace();
 
-            checkIfOperationExist = false;
+                checkIfOperationExist = false;
+            }
+            else { ui.lineEdit->backspace(); }
         }
-        else { ui.lineEdit->backspace(); }
     }
 }
 

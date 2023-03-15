@@ -106,23 +106,25 @@ void FindSolution::fillVectors()
 
 void FindSolution::concatenateValues()
 {
-	for (int i = 0; i < firstVector.size(); i++)
-	{
-		firstValue_str += firstVector[i];
+	if ((!firstVector.empty()) and (!secondVector.empty())) {
+		for (int i = 0; i < firstVector.size(); i++)
+		{
+			firstValue_str += firstVector[i];
+		}
+
+		firstValue = std::stof(firstValue_str);
+
+		if (textFromEdit[0] == '-') { firstValue *= -1; }
+
+		for (int i = 0; i < secondVector.size(); i++)
+		{
+			secondValue_str += secondVector[i];
+		}
+
+		secondValue = std::stof(secondValue_str);
+
+		if (checkMinus) { secondValue *= -1; }
 	}
-
-	firstValue = std::stof(firstValue_str);
-
-	if (textFromEdit[0] == '-') { firstValue *= -1; }
-
-	for (int i = 0; i < secondVector.size(); i++)
-	{
-		secondValue_str += secondVector[i];
-	}
-
-	secondValue = std::stof(secondValue_str);
-
-	if (checkMinus) { secondValue *= -1; }
 }
 
 void FindSolution::findOperator()
@@ -161,19 +163,21 @@ void FindSolution::findOperator()
 
 float FindSolution::calculateAnswer()
 {
-	if (op == '%') {
-		return (static_cast<int>(firstValue) % static_cast<int>(secondValue));
-	}
-	else if (op == '*') {
-		return (firstValue * secondValue);
-	}
-	else if (op == '/') {
-		return (firstValue / secondValue);
-	}
-	else if (op == '+') {
-		return (firstValue + secondValue);
-	}
-	else if (op == '-') {
-		return (firstValue - secondValue);
+	if ((firstValue != NULL) and (secondValue != NULL)) {
+		if (op == '%') {
+			return (static_cast<int>(firstValue) % static_cast<int>(secondValue));
+		}
+		else if (op == '*') {
+			return (firstValue * secondValue);
+		}
+		else if (op == '/') {
+			return (firstValue / secondValue);
+		}
+		else if (op == '+') {
+			return (firstValue + secondValue);
+		}
+		else if (op == '-') {
+			return (firstValue - secondValue);
+		}
 	}
 }

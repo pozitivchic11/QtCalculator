@@ -33,7 +33,7 @@ private:
 	std::string secondValue_str;
 
 	QString textFromEdit;
-	QString op;
+	QString op = nullptr;
 
 	bool checkMinus = false;
 

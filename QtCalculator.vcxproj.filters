@@ -49,4 +49,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="style.css">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
